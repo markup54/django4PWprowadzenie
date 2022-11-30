@@ -1,0 +1,58 @@
+pip install django  
+
+django-admin startproject stronawww
+
+cd stronawww
+python manage.py runserver 
+
+python .\manage.py migrate   pusta baza danych
+
+tworzenie admina
+python manage.py createsuperuser
+
+logujemy sie 
+http://127.0.0.1:8000/admin/
+
+python manage.py startapp blog
+
+w settings 
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'blog',
+]
+
+models.
+
+python manage.py makemigrations blog
+
+python .\manage.py migrate blog 
+
+admin.py
+from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)
+
+python .\manage.py shell
+
+python .\manage.py shell
+
+>>> from blog.models import Post
+>>> Post.objects.all()
+>>> from django.contrib.auth.models import User 
+
+>>> ja = User.objects.get(username='marzena') 
+
+>>> Post.objects.create(author = ja, title = "Dlaczego?", text = "Pytanie retoryczne")
+
+>>> Post.objects.filter(title__contains='czego')
+
+>>>Post.objects.filter(author=ja)
+
+>>> post = Post.objects.get(title__contains="Dlaczego")    
+>>> post.publish() 
